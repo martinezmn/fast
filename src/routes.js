@@ -9,7 +9,7 @@ async function routes(fastify, options) {
 
     fastify.post('/auth/authenticate', await authSchema.authenticate(), authController.authenticate);
 
-    fastify.get('/breeds', await BreedsSchema.list(), BreedsController.list);
+    fastify.get('/breeds', await BreedsSchema.list(), protected, BreedsController.list);
 
     // routes.post('/auth/authenticate', authController.authenticate);
 
