@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+        .container {
+            width: 100%;
+            background-color: #f0f0f0;
+            text-align: center
+        }
+
+        .content {
+            width: 600px;
+            background-color: #fff;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .content-header {
+            background-color: #efbb40;
+            padding: 10px
+        }
+
+        .content-header h1 {
+            color: #fff;
+            font-weight: 700;
+            font-size: 28px
+        }
+
+        .content-body {
+            background-color: #fff;
+            padding: 10px
+        }
+
+        .content-body p {
+            font-size: 18px
+        }
+
+        .content-body h2 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #fff;
+            margin-top: 30px;
+            margin-bottom: 30px
+        }
+
+        .content-body h2 span {
+            background-color: #efbb40;
+            padding: 10px
+        }
+
+        .content-footer {
+            background-color: #ddd;
+            padding: 10px
+        }
+
+        .content-footer h3 {
+            font-weight: 400;
+            font-size: 16px
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="content-header">
+                <h1>Kapiwa App</h1>
+            </div>
+            <div class="content-body">
+                <p><b>Olá! Que bom ver você por aqui!</b></p>
+                <p>Aqui está o código que você precisa para confirmar o email no nosso aplicativo:</p>
+                <h2><span>{{ code }}</span></h2>
+            </div>
+            <div class="content-footer">
+                <h3>Kapiwa App</h3>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
