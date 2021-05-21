@@ -24,7 +24,7 @@ require('./database');
 
 const port = process.env.API_PORT || 3000;
 
-fastify.listen(port, function (err, address) {
+fastify.listen(port, '0.0.0.0', function (err, address) {
     if (err) {
         console.log(err);
         process.exit(1);
