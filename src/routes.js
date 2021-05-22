@@ -10,6 +10,8 @@ const LikesController = require("./controllers/likes.controller");
 const LikesSchema = require("./schemas/likes.schema");
 const CommentsController = require("./controllers/comments.controller");
 const CommentsSchema = require("./schemas/comments.schema");
+const InstitutesController = require("./controllers/institutes.controller");
+const InstitutesSchema = require("./schemas/institutes.schema");
 
 async function routes(fastify, options) {
     fastify.post('/auth/authenticate', { schema: await AuthSchema.authenticate() }, AuthController.authenticate);
@@ -26,10 +28,14 @@ async function routes(fastify, options) {
     fastify.post('/likes/:post_id/like', { schema: await LikesSchema.like(), preValidation: [fastify.auth] }, LikesController.like);
     fastify.post('/likes/:post_id/dislike', { schema: await LikesSchema.like(), preValidation: [fastify.auth] }, LikesController.dislike);
 
-    fastify.get('/comments/:post_id', { schema: await CommentsSchema.list(), preValidation: [fastify.auth] }, CommentsController.list);
-    fastify.get('/comments/:post_id/:last_comment_id', { schema: await CommentsSchema.list(), preValidation: [fastify.auth] }, CommentsController.list);
+    fastify.get('/comments/list/:post_id', { schema: await CommentsSchema.list(), preValidation: [fastify.auth] }, CommentsController.list);
+    fastify.get('/comments/list/:post_id/:last_comment_id', { schema: await CommentsSchema.list(), preValidation: [fastify.auth] }, CommentsController.list);
     fastify.post('/comments/comment/:post_id', { schema: await CommentsSchema.comment(), preValidation: [fastify.auth] }, CommentsController.comment);
     fastify.delete('/comments/delete/:comment_id', { schema: await CommentsSchema.delete(), preValidation: [fastify.auth] }, CommentsController.delete);
+    
+    fastify.get('/institutes/info/:institute_id', { schema: await InstitutesSchema.info(), preValidation: [fastify.auth] }, InstitutesController.info);
+    fastify.get('/institutes/posts/:institute_id', { schema: await InstitutesSchema.posts(), preValidation: [fastify.auth] }, InstitutesController.posts);
+    fastify.get('/institutes/animals/:institute_id', { schema: await InstitutesSchema.animals(), preValidation: [fastify.auth] }, InstitutesController.animals);
 }
 
 module.exports = routes;

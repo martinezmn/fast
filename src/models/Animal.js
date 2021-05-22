@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const uniqidHelper = require('../helpers/uniqid.helper');
 
-class Animal extends Model {
+class animal extends Model {
     static init(sequelize) {
         super.init({
             institute_id: {
@@ -19,7 +19,7 @@ class Animal extends Model {
             birthdate: {
                 type: DataTypes.DATEONLY
             },
-            picture_url: {
+            profile_picture: {
                 type: DataTypes.STRING,
                 validate: {
                     max: 250
@@ -45,4 +45,4 @@ class Animal extends Model {
     }
 }
 
-module.exports = Animal;
+module.exports = animal;

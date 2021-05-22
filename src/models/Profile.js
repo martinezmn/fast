@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const uniqidHelper = require('../helpers/uniqid.helper');
 
-class Profile extends Model {
+class profile extends Model {
     static init(sequelize) {
         super.init({
             name: {
@@ -20,6 +20,12 @@ class Profile extends Model {
                     max: 40
                 }
             },
+            profile_picture: {
+                type: DataTypes.STRING,
+                validate: {
+                    max: 250
+                }
+            },
         }, {
             hooks: {
                 beforeCreate: (profile, options) => {
@@ -33,4 +39,4 @@ class Profile extends Model {
     }
 }
 
-module.exports = Profile;
+module.exports = profile;

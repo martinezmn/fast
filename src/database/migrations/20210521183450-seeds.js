@@ -2,11 +2,11 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.sequelize.query("INSERT INTO profiles VALUES ('kodjflbtckulezx8', 'Admin Teste', 'Admin Teste da Silva Tester', NOW(), NOW())");
+    await queryInterface.sequelize.query("INSERT INTO profiles VALUES ('kodjflbtckulezx8', 'Admin Teste', 'Admin Teste da Silva Tester', null, NOW(), NOW())");
     await queryInterface.sequelize.query("INSERT INTO users VALUES ('kodjflbtckulezx8', 'admin@admin.com', '$2y$10$oZ/xwh/94SYKzir76oV9CuTVw.Qi9CwViQCqYh5/MDPvhvzXQKG/i', NOW(), NOW())");
 
-    await queryInterface.sequelize.query("INSERT INTO profiles VALUES ('kodjomkfgfaa17eb', 'Cão Terapeuta', 'Instituto Cão Terapeuta', NOW(), NOW())");
-    await queryInterface.sequelize.query("INSERT INTO institutes VALUES ('kodjomkfgfaa17eb', 'caoterapeuta@teste.com', NOW(), NOW())");
+    await queryInterface.sequelize.query("INSERT INTO profiles VALUES ('kodjomkfgfaa17eb', 'Cão Terapeuta', 'Instituto Cão Terapeuta', 'https://caoterapeuta.org.br/wp-content/uploads/2020/11/lucca-menor-1.png', NOW(), NOW())");
+    await queryInterface.sequelize.query("INSERT INTO institutes VALUES ('kodjomkfgfaa17eb', 'caoterapeuta@teste.com', 'Um instituto legal', 'Campo Grande', 'MS', NOW(), NOW())");
 
     await queryInterface.sequelize.query("INSERT INTO institutes_admins VALUES ('kodjflbtckulezx8', 'kodjomkfgfaa17eb', NOW())");
 

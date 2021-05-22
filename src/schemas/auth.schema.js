@@ -19,7 +19,8 @@ module.exports = class AuthSchema {
                             properties: {
                                 id: { type: 'string' },
                                 name: { type: 'string' },
-                                full_name: { type: 'string' }
+                                full_name: { type: 'string' },
+                                profile_picture: { type: ['string', 'null'] }
                             }
                         },
                         token: { type: 'string' }
@@ -42,11 +43,12 @@ module.exports = class AuthSchema {
                             items: {
                                 type: 'object',
                                 properties: {
-                                    Profile: {
+                                    profile: {
                                         type: 'object',
                                         properties: {
                                             id: { type: 'string' },
-                                            name: { type: 'string' }
+                                            name: { type: 'string' },
+                                            profile_picture: { type: ['string', 'null'] }
                                         }
                                     }
                                 }
@@ -78,7 +80,8 @@ module.exports = class AuthSchema {
                             properties: {
                                 id: { type: 'string' },
                                 name: { type: 'string' },
-                                full_name: { type: 'string' }
+                                full_name: { type: 'string' },
+                                profile_picture: { type: ['string', 'null'] }
                             }
                         },
                         token: { type: 'string' }

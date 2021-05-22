@@ -37,7 +37,7 @@ module.exports = class AuthController {
 
             const profile = await Profile.findByPk(request.user.user_id);
 
-            accounts.unshift({ Profile: profile });
+            accounts.unshift({ profile });
 
             return reply.code(200).send({ accounts });
         } catch (error) {
@@ -49,6 +49,10 @@ module.exports = class AuthController {
     static async changeAccount(request, reply) {
         try {
             const { profile_id } = request.body;
+
+            if ( profile_id === request.user.profile_id ) {
+                throw new Error('Nothing to change.');
+            }
 
             const admin = await InstitutesAdmin.findOne({
                 where: {

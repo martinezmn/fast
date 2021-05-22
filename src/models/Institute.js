@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 
-class Institute extends Model {
+class institute extends Model {
     static init(sequelize) {
         super.init({
             profile_id: {
@@ -12,6 +12,18 @@ class Institute extends Model {
                 validate: {
                     isEmail: true
                 }
+            },
+            description: {
+                type: DataTypes.STRING
+            },
+            city: {
+                type: DataTypes.STRING
+            },
+            state: {
+                type: DataTypes.STRING,
+                validate: {
+                    len: [2]
+                }
             }
         }, {
             updatedAt: 'updated_at',
@@ -21,4 +33,4 @@ class Institute extends Model {
     }
 }
 
-module.exports = Institute;
+module.exports = institute;

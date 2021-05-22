@@ -2,7 +2,7 @@ const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-class User extends Model {
+class user extends Model {
     static init(sequelize) {
         super.init({
             profile_id: {
@@ -38,4 +38,4 @@ class User extends Model {
     }
 }
 
-module.exports = User;
+module.exports = user;

@@ -40,7 +40,8 @@ module.exports = class BreedsSchema {
                             properties: {
                                 id: { type: 'string' },
                                 name: { type: 'string' },
-                                full_name: { type: 'string' }
+                                full_name: { type: 'string' },
+                                profile_picture: { type: ['string', 'null'] }
                             }
                         },
                         token: { type: 'string' }

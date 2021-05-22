@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const crypto = require('crypto');
 
-class Token extends Model {
+class token extends Model {
     static init(sequelize) {
         super.init({
             email: {
@@ -33,4 +33,4 @@ class Token extends Model {
     }
 }
 
-module.exports = Token;
+module.exports = token;

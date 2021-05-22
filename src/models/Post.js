@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const uniqidHelper = require('../helpers/uniqid.helper');
 
-class Post extends Model {
+class post extends Model {
     static init(sequelize) {
         super.init({
             institute_id: {
@@ -40,4 +40,4 @@ class Post extends Model {
     }
 }
 
-module.exports = Post;
+module.exports = post;

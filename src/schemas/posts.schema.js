@@ -18,22 +18,23 @@ module.exports = class PostsSchema {
                                     likes_count: { type: 'integer' },
                                     comments_count: { type: 'integer' },
                                     created_at: { type: 'string' },
-                                    Profile: {
+                                    profile: {
                                         type: 'object',
                                         properties: {
                                             id: { type: 'string' },
-                                            name: { type: 'string' }
+                                            name: { type: 'string' },
+                                            profile_picture: { type: ['string', 'null'] }
                                         }
                                     },
-                                    Animal: {
+                                    animal: {
                                         type: ['object', 'null'],
                                         properties: {
                                             id: { type: 'string' },
                                             name: { type: 'string' },
-                                            picture_url: { type: 'string' }
+                                            profile_picture: { type: 'string' }
                                         }
                                     },
-                                    Like: {
+                                    like: {
                                         type: ['object', 'null'],
                                         properties: {
                                             created_at: { type: 'string' }
