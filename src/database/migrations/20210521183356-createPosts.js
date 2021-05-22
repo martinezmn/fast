@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         allowNull: false
       },
-      profile_id: {
+      institute_id: {
         type: Sequelize.STRING,
         allowNull: false,
         references: { model: 'profiles', key: 'id' }
@@ -21,8 +21,8 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true
       },
-      picture_url: {
-        type: Sequelize.STRING,
+      content: {
+        type: Sequelize.JSON,
         allowNull: false
       },
       likes_count: {

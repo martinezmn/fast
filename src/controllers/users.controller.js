@@ -1,7 +1,6 @@
 const User = require('../models/User');
 const Profile = require('../models/Profile');
 const Token = require('../models/Token');
-const emailCodeHelper = require('../helpers/email.code.helper');
 const mailerHelper = require('../helpers/mailer.helper');
 
 module.exports = class UsersController {
@@ -9,13 +8,13 @@ module.exports = class UsersController {
         try {
             const { email } = request.body;
 
-            const emailCode = emailCodeHelper.generate(email);
+            const token = await Token.new();
 
-            await Token.create({ token: emailCode.hash });
+            await Token.create({ email, hash: token.hash });
 
-            await mailerHelper.sendCodeToEmail(email, emailCode.code);
+            await mailerHelper.sendCodeToEmail(email, token.code);
 
-            return reply.code(200).send({ message: 'OK' });
+            return reply.code(200).send();
         } catch (error) {
             return reply.code(500).send({ message: error.message });
         }
@@ -25,22 +24,20 @@ module.exports = class UsersController {
         try {
             const { email, password, name, full_name, email_code } = request.body;
 
-            const emailCode = emailCodeHelper.hash(email, email_code);
+            const token = await Token.findByPk(email);
 
-            const token = await Token.findByPk(emailCode);
-
-            if (!token) {
+            if (!token || !await Token.verify(email_code, token.hash)) {
                 throw new Error('Invalid code.');
             }
 
-            await Token.destroy({ where: { token: emailCode } });
+            await Token.destroy({ where: { email } });
 
             const profile = await Profile.create({ name, full_name });
             const user = await User.create({ profile_id: profile.id, email, password });
 
             const jwtToken = User.generateJwt(user);
 
-            return reply.code(200).send({ message: 'OK', profile, token: jwtToken });
+            return reply.code(200).send({ profile, token: jwtToken });
         } catch (error) {
             return reply.code(500).send({ message: error.message });
         }

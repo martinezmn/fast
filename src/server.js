@@ -1,26 +1,25 @@
 const fastify = require('fastify')();
 
+require('dotenv').config();
+require('./database');
+
 fastify.register(require('fastify-swagger'), {
     routePrefix: '/doc',
     swagger: {
         info: {
-            title: 'Test swagger',
-            version: '0.0.1'
-        },
-        consumes: ['application/json'],
-        produces: ['application/json'],
-        tags: [
-            { name: 'Auth', description: 'Auth related end-points' },
-            { name: 'Breeds', description: 'Breeds related end-points' }
-        ]
+            title: 'Test swagger'
+        }
     },
     exposeRoute: true
 });
 
-fastify.register(require('./routes'));
+fastify.register(require('fastify-jwt'), {
+    secret: process.env.API_SALT
+});
 
-require('dotenv').config();
-require('./database');
+fastify.decorate("auth", async (request) => await request.jwtVerify());
+
+fastify.register(require('./routes'));
 
 const port = process.env.API_PORT || 3000;
 

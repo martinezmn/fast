@@ -10,6 +10,7 @@ const Animal = require('../models/Animal');
 const Like = require('../models/Like');
 const Comment = require('../models/Comment');
 const Breed = require('../models/Breed');
+const InstitutesAdmin = require('../models/InstitutesAdmin');
 
 const connection = new Sequelize(dbConfig);
 
@@ -22,5 +23,6 @@ Animal.init(connection);
 Like.init(connection);
 Comment.init(connection);
 Breed.init(connection);
+InstitutesAdmin.init(connection);
 
 module.exports = connection;

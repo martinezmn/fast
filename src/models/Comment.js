@@ -1,5 +1,5 @@
-const { Model, DataTypes, Op } = require('sequelize');
-const Profile = require('../models/Profile');
+const { Model, DataTypes } = require('sequelize');
+const uniqidHelper = require('../helpers/uniqid.helper');
 
 class Comment extends Model {
     static init(sequelize) {
@@ -16,32 +16,15 @@ class Comment extends Model {
                 type: DataTypes.STRING
             }
         }, {
+            hooks: {
+                beforeCreate: (comment, options) => {
+                    comment.id = uniqidHelper.generate();
+                }
+            },
             updatedAt: false,
             createdAt: 'created_at',
             sequelize
         });
-
-        Comment.list = async function (post_id, last_comment_id) {
-            Profile.hasMany(Comment, { foreignKey: 'profile_id' })
-            Comment.belongsTo(Profile, { foreignKey: 'profile_id' })
-
-            let where = {
-                post_id
-            };
-
-            if (last_comment_id) {
-                where.id = { [Op.lt]: last_comment_id };
-            }
-
-            return await Comment.findAll({
-                include: [Profile],
-                where,
-                order: [
-                    ['id', 'DESC']
-                ],
-                limit: 10
-            });
-        }
     }
 }
 

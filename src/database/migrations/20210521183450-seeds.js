@@ -20,12 +20,12 @@ module.exports = {
     await queryInterface.sequelize.query("INSERT INTO animals VALUES ('kodjs9aixkxxundo', 'kodjomkfgfaa17eb', 'Lucca', '2020-01-18', 'https://caoterapeuta.org.br/wp-content/uploads/2020/11/lucca-menor-1.png', 'DOG_GOLDEN_RETRIEVER', 0, NOW(), NOW())");
     await queryInterface.sequelize.query("INSERT INTO animals VALUES ('kodjscftgyoyxzyi', 'kodjomkfgfaa17eb', 'Maria', '2013-02-15', 'https://caoterapeuta.org.br/wp-content/uploads/2020/11/maria-menor-1.png', 'DOG_UNDEFINED', 0, NOW(), NOW())");
 
-    await queryInterface.sequelize.query("INSERT INTO posts VALUES ('kodju6nhrekagicj', 'kodjomkfgfaa17eb', 'kodjryg4wyzplaxv', 'description', 'https://www.awebic.com/wp-content/uploads/2015/10/awebic-fotos-cachorros-felizes-99.jpg', 0, 0, NOW())");
-    await queryInterface.sequelize.query("INSERT INTO posts VALUES ('kodju9xziqc3upgj', 'kodjomkfgfaa17eb', null, 'description', 'https://www.awebic.com/wp-content/uploads/2015/10/awebic-fotos-cachorros-felizes-97.jpg', 0, 0, NOW())");
-    await queryInterface.sequelize.query("INSERT INTO posts VALUES ('kodjucvcted2eg6z', 'kodjomkfgfaa17eb', 'kodjs62obyippxdw', 'description', 'https://www.awebic.com/wp-content/uploads/2015/10/awebic-fotos-cachorros-felizes-95.jpg', 0, 0, NOW())");
-    await queryInterface.sequelize.query("INSERT INTO posts VALUES ('kodjufrr0pzpiot5', 'kodjomkfgfaa17eb', null, 'description', 'https://www.awebic.com/wp-content/uploads/2015/10/awebic-fotos-cachorros-felizes-93.jpg', 0, 0, NOW())");
-    await queryInterface.sequelize.query("INSERT INTO posts VALUES ('kodjuj0n0f0k8w31', 'kodjomkfgfaa17eb', 'kodjscftgyoyxzyi', 'description', 'https://www.awebic.com/wp-content/uploads/2015/10/awebic-fotos-cachorros-felizes-91.jpg', 0, 0, NOW())");
-    await queryInterface.sequelize.query("INSERT INTO posts VALUES ('kodjum8wii3ql1n6', 'kodjomkfgfaa17eb', 'kodjscftgyoyxzyi', 'description', 'https://www.awebic.com/wp-content/uploads/2015/10/awebic-fotos-cachorros-felizes-88.jpg', 0, 0, NOW())");
+    await queryInterface.sequelize.query("INSERT INTO posts VALUES ('kodju6nhrekagicj', 'kodjomkfgfaa17eb', 'kodjryg4wyzplaxv', 'description', '[\"https://www.awebic.com/wp-content/uploads/2015/10/awebic-fotos-cachorros-felizes-99.jpg\"]', 0, 0, NOW())");
+    await queryInterface.sequelize.query("INSERT INTO posts VALUES ('kodju9xziqc3upgj', 'kodjomkfgfaa17eb', null, 'description', '[\"https://www.awebic.com/wp-content/uploads/2015/10/awebic-fotos-cachorros-felizes-97.jpg\"]', 0, 0, NOW())");
+    await queryInterface.sequelize.query("INSERT INTO posts VALUES ('kodjucvcted2eg6z', 'kodjomkfgfaa17eb', 'kodjs62obyippxdw', 'description', '[\"https://www.awebic.com/wp-content/uploads/2015/10/awebic-fotos-cachorros-felizes-95.jpg\"]', 0, 0, NOW())");
+    await queryInterface.sequelize.query("INSERT INTO posts VALUES ('kodjufrr0pzpiot5', 'kodjomkfgfaa17eb', null, 'description', '[\"https://www.awebic.com/wp-content/uploads/2015/10/awebic-fotos-cachorros-felizes-93.jpg\",\"https://www.awebic.com/wp-content/uploads/2015/10/awebic-fotos-cachorros-felizes-99.jpg\"]', 0, 0, NOW())");
+    await queryInterface.sequelize.query("INSERT INTO posts VALUES ('kodjuj0n0f0k8w31', 'kodjomkfgfaa17eb', 'kodjscftgyoyxzyi', 'description', '[\"https://www.awebic.com/wp-content/uploads/2015/10/awebic-fotos-cachorros-felizes-91.jpg\"]', 0, 0, NOW())");
+    await queryInterface.sequelize.query("INSERT INTO posts VALUES ('kodjum8wii3ql1n6', 'kodjomkfgfaa17eb', 'kodjscftgyoyxzyi', 'description', '[\"https://www.awebic.com/wp-content/uploads/2015/10/awebic-fotos-cachorros-felizes-88.jpg\"]', 0, 0, NOW())");
 
     await queryInterface.sequelize.query("INSERT INTO subscribers VALUES ('kodjflbtckulezx8', 'kodjomkfgfaa17eb', NOW(), NOW())");
 

@@ -3,9 +3,13 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable('tokens', {
-      token: {
+      email: {
         type: Sequelize.STRING,
         primaryKey: true,
+        allowNull: false
+      },
+      hash: {
+        type: Sequelize.STRING,
         allowNull: false
       },
       created_at: {

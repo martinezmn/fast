@@ -1,31 +1,35 @@
-const protected = require("./auth");
-const authController = require("./controllers/auth.controller");
+const AuthController = require("./controllers/auth.controller");
 const BreedsController = require("./controllers/breeds.controller");
-const usersController = require("./controllers/users.controller");
-const authSchema = require("./schemas/auth.schema");
+const AuthSchema = require("./schemas/auth.schema");
 const BreedsSchema = require("./schemas/breeds.schema");
+const UsersSchema = require("./schemas/users.schema");
+const UsersController = require("./controllers/users.controller");
+const PostsController = require("./controllers/posts.controller");
+const PostsSchema = require("./schemas/posts.schema");
+const LikesController = require("./controllers/likes.controller");
+const LikesSchema = require("./schemas/likes.schema");
+const CommentsController = require("./controllers/comments.controller");
+const CommentsSchema = require("./schemas/comments.schema");
 
 async function routes(fastify, options) {
+    fastify.post('/auth/authenticate', { schema: await AuthSchema.authenticate() }, AuthController.authenticate);
+    fastify.get('/auth/list-accounts', { schema: await AuthSchema.listAccounts(), preValidation: [fastify.auth] }, AuthController.listAccounts);
+    fastify.post('/auth/change-account', { schema: await AuthSchema.changeAccount(), preValidation: [fastify.auth] }, AuthController.changeAccount);
 
-    fastify.post('/auth/authenticate', await authSchema.authenticate(), authController.authenticate);
+    fastify.post('/users/send-code', { schema: await UsersSchema.sendCode() }, UsersController.sendCode);
+    fastify.post('/users/register', { schema: await UsersSchema.register() }, UsersController.register);
 
-    fastify.get('/breeds', await BreedsSchema.list(), protected, BreedsController.list);
+    fastify.get('/breeds/list', { schema: await BreedsSchema.list(), preValidation: [fastify.auth] }, BreedsController.list);
 
-    // routes.post('/auth/authenticate', authController.authenticate);
+    fastify.get('/posts/timeline', { schema: await PostsSchema.timeline(), preValidation: [fastify.auth] }, PostsController.timeline);
 
-    // routes.post('/users/send-code', usersController.sendCode);
-    // routes.post('/users/register', usersController.register);
+    fastify.post('/likes/:post_id/like', { schema: await LikesSchema.like(), preValidation: [fastify.auth] }, LikesController.like);
+    fastify.post('/likes/:post_id/dislike', { schema: await LikesSchema.like(), preValidation: [fastify.auth] }, LikesController.dislike);
 
-    // routes.get('/posts/timeline', protected, postsController.timeline);
-    // routes.get('/posts/timeline/:last_post_id', protected, postsController.timeline);
-
-    // routes.post('/likes/:post_id/like', protected, likesController.like);
-    // routes.post('/likes/:post_id/dislike', protected, likesController.dislike);
-
-    // routes.get('/comments/:post_id', protected, commentsController.list);
-    // routes.get('/comments/:post_id/:last_comment_id', protected, commentsController.list);
-    // routes.post('/comments/comment', protected, commentsController.comment);
-    // routes.delete('/comments/delete/:comment_id', protected, commentsController.delete);
+    fastify.get('/comments/:post_id', { schema: await CommentsSchema.list(), preValidation: [fastify.auth] }, CommentsController.list);
+    fastify.get('/comments/:post_id/:last_comment_id', { schema: await CommentsSchema.list(), preValidation: [fastify.auth] }, CommentsController.list);
+    fastify.post('/comments/comment/:post_id', { schema: await CommentsSchema.comment(), preValidation: [fastify.auth] }, CommentsController.comment);
+    fastify.delete('/comments/delete/:comment_id', { schema: await CommentsSchema.delete(), preValidation: [fastify.auth] }, CommentsController.delete);
 }
 
 module.exports = routes;

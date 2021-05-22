@@ -35,7 +35,7 @@ module.exports = class mailerHelper {
         return await mailerHelper.send({
             recipient,
             subject: 'Confirmação de email',
-            template: 'emailCode',
+            template: 'email.code',
             replacements: { code }
         });
     }
