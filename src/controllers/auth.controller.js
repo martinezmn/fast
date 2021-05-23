@@ -50,19 +50,21 @@ module.exports = class AuthController {
         try {
             const { profile_id } = request.body;
 
-            if ( profile_id === request.user.profile_id ) {
+            if (profile_id === request.user.profile_id) {
                 throw new Error('Nothing to change.');
             }
 
-            const admin = await InstitutesAdmin.findOne({
-                where: {
-                    profile_id: request.user.user_id,
-                    institute_id: profile_id
-                }
-            });
+            if (profile_id !== request.user.user_id) {
+                const admin = await InstitutesAdmin.findOne({
+                    where: {
+                        profile_id: request.user.user_id,
+                        institute_id: profile_id
+                    }
+                });
 
-            if (!admin) {
-                throw new Error('Invalid account.');
+                if (!admin) {
+                    throw new Error('Invalid account.');
+                }
             }
 
             const profile = await Profile.findByPk(profile_id);
@@ -71,7 +73,6 @@ module.exports = class AuthController {
 
             return reply.code(200).send({ profile, token: jwtToken });
         } catch (error) {
-            console.log(error);
             return reply.code(500).send({ message: error.message });
         }
     }
