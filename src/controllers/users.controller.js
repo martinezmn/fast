@@ -10,6 +10,12 @@ module.exports = class UsersController {
 
             const token = await Token.new();
 
+            const hasToken = await Token.findByPk(email);
+            
+            if (hasToken) {
+                await Token.destroy({ where: { email } });
+            }
+            
             await Token.create({ email, hash: token.hash });
 
             await mailerHelper.sendCodeToEmail(email, token.code);
