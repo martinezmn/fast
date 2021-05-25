@@ -29,7 +29,7 @@ module.exports = class BreedsSchema {
                     full_name: { type: 'string' },
                     email_code: { type: 'integer', minimum: 1000, maximum: 9999 }
                 },
-                required: ['email', 'password', 'name', 'full_name', 'email_code']
+                required: ['email', 'password', 'name', 'full_name', 'email_code'],
             },
             response: {
                 200: {
@@ -38,7 +38,7 @@ module.exports = class BreedsSchema {
                         profile: {
                             type: 'object',
                             properties: {
-                                id: { type: 'string' },
+                                id: { type: 'integer' },
                                 name: { type: 'string' },
                                 full_name: { type: 'string' },
                                 profile_picture: { type: ['string', 'null'] }

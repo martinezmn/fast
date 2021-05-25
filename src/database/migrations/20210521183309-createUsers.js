@@ -4,7 +4,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable('users', {
       profile_id: {
-        type: Sequelize.STRING,
+        type: Sequelize.BIGINT,
         primaryKey: true,
         allowNull: false,
         references: { model: 'profiles', key: 'id' }

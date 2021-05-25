@@ -4,17 +4,17 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable('comments', {
       id: {
-        type: Sequelize.STRING,
+        type: Sequelize.BIGINT,
         primaryKey: true,
         allowNull: false
       },
       profile_id: {
-        type: Sequelize.STRING,
+        type: Sequelize.BIGINT,
         allowNull: false,
         references: { model: 'profiles', key: 'id' }
       },
       post_id: {
-        type: Sequelize.STRING,
+        type: Sequelize.BIGINT,
         allowNull: false,
         references: { model: 'posts', key: 'id' }
       },

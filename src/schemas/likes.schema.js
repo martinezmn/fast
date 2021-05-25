@@ -6,7 +6,7 @@ module.exports = class LikesSchema {
             params: {
                 type: 'object',
                 properties: {
-                    post_id: { type: 'string' }
+                    post_id: { type: 'integer' }
                 },
                 required: ['post_id']
             },

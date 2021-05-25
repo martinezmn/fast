@@ -6,8 +6,8 @@ module.exports = class CommentsSchema {
             params: {
                 type: 'object',
                 properties: {
-                    post_id: { type: 'string' },
-                    last_comment_id: { type: 'string' }
+                    post_id: { type: 'integer' },
+                    last_comment_id: { type: 'integer' }
                 },
                 required: ['post_id']
             },
@@ -20,13 +20,13 @@ module.exports = class CommentsSchema {
                             items: {
                                 type: 'object',
                                 properties: {
-                                    id: { type: 'string' },
+                                    id: { type: 'integer' },
                                     comment: { type: 'string' },
                                     created_at: { type: 'string' },
                                     Profile: {
                                         type: 'object',
                                         properties: {
-                                            id: { type: 'string' },
+                                            id: { type: 'integer' },
                                             name: { type: 'string' }
                                         }
                                     }
@@ -46,7 +46,7 @@ module.exports = class CommentsSchema {
             params: {
                 type: 'object',
                 properties: {
-                    post_id: { type: 'string' }
+                    post_id: { type: 'integer' }
                 },
                 required: ['post_id']
             },
@@ -72,7 +72,7 @@ module.exports = class CommentsSchema {
             params: {
                 type: 'object',
                 properties: {
-                    comment_id: { type: 'string' }
+                    comment_id: { type: 'integer' }
                 },
                 required: ['comment_id']
             },

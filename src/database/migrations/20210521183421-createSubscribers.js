@@ -4,13 +4,13 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable('subscribers', {
       profile_id: {
-        type: Sequelize.STRING,
+        type: Sequelize.BIGINT,
         primaryKey: true,
         allowNull: false,
         references: { model: 'profiles', key: 'id' }
       },
       institute_id: {
-        type: Sequelize.STRING,
+        type: Sequelize.BIGINT,
         primaryKey: true,
         allowNull: false,
         references: { model: 'profiles', key: 'id' }

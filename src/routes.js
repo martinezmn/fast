@@ -32,7 +32,7 @@ async function routes(fastify, options) {
     fastify.get('/comments/list/:post_id/:last_comment_id', { schema: await CommentsSchema.list(), preValidation: [fastify.auth] }, CommentsController.list);
     fastify.post('/comments/comment/:post_id', { schema: await CommentsSchema.comment(), preValidation: [fastify.auth] }, CommentsController.comment);
     fastify.delete('/comments/delete/:comment_id', { schema: await CommentsSchema.delete(), preValidation: [fastify.auth] }, CommentsController.delete);
-    
+
     fastify.get('/institutes/info/:institute_id', { schema: await InstitutesSchema.info(), preValidation: [fastify.auth] }, InstitutesController.info);
     fastify.get('/institutes/posts/:institute_id', { schema: await InstitutesSchema.posts(), preValidation: [fastify.auth] }, InstitutesController.posts);
     fastify.get('/institutes/animals/:institute_id', { schema: await InstitutesSchema.animals(), preValidation: [fastify.auth] }, InstitutesController.animals);

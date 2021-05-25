@@ -2,10 +2,11 @@ module.exports = class InstitutesSchema {
     static async info() {
         return {
             tags: ['Institutes'],
+            summary: 'protected',
             params: {
                 type: 'object',
                 properties: {
-                    institute_id: { type: 'string' }
+                    institute_id: { type: 'integer' }
                 },
                 required: ['institute_id']
             },
@@ -22,7 +23,7 @@ module.exports = class InstitutesSchema {
                                 profile: {
                                     type: 'object',
                                     properties: {
-                                        id: { type: 'string' },
+                                        id: { type: 'integer' },
                                         name: { type: 'string' },
                                         full_name: { type: 'string' },
                                         profile_picture: { type: ['string', 'null'] }
@@ -39,10 +40,11 @@ module.exports = class InstitutesSchema {
     static async posts() {
         return {
             tags: ['Institutes'],
+            summary: 'protected',
             params: {
                 type: 'object',
                 properties: {
-                    institute_id: { type: 'string' }
+                    institute_id: { type: 'integer' }
                 },
                 required: ['institute_id']
             },
@@ -55,7 +57,7 @@ module.exports = class InstitutesSchema {
                             items: {
                                 type: 'object',
                                 properties: {
-                                    id: { type: 'string' },
+                                    id: { type: 'integer' },
                                     description: { type: 'string' },
                                     content: { type: 'array' },
                                     likes_count: { type: 'integer' },
@@ -64,7 +66,7 @@ module.exports = class InstitutesSchema {
                                     animal: {
                                         type: ['object', 'null'],
                                         properties: {
-                                            id: { type: 'string' },
+                                            id: { type: 'integer' },
                                             name: { type: 'string' },
                                             profile_picture: { type: 'string' }
                                         }
@@ -87,10 +89,11 @@ module.exports = class InstitutesSchema {
     static async animals() {
         return {
             tags: ['Institutes'],
+            summary: 'protected',
             params: {
                 type: 'object',
                 properties: {
-                    institute_id: { type: 'string' }
+                    institute_id: { type: 'integer' }
                 },
                 required: ['institute_id']
             },
@@ -103,7 +106,7 @@ module.exports = class InstitutesSchema {
                             items: {
                                 type: 'object',
                                 properties: {
-                                    id: { type: 'string' },
+                                    id: { type: 'integer' },
                                     name: { type: 'string' },
                                     profile_picture: { type: 'string' },
                                     posts_count: { type: 'integer' },

@@ -1,4 +1,11 @@
-const fastify = require('fastify')();
+const errorsHelper = require('./helpers/errors.helper');
+const fastify = require('fastify')({
+    ajv: {
+        customOptions: {
+            allErrors: true
+        }
+    }
+});
 
 require('dotenv').config();
 require('./database');
@@ -18,6 +25,8 @@ fastify.register(require('fastify-jwt'), {
 });
 
 fastify.decorate("auth", async (request) => await request.jwtVerify());
+
+fastify.setErrorHandler((errors, request, reply) => errorsHelper.throw(errors, reply));
 
 fastify.register(require('./routes'));
 

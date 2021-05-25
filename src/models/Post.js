@@ -5,11 +5,11 @@ class post extends Model {
     static init(sequelize) {
         super.init({
             institute_id: {
-                type: DataTypes.STRING,
+                type: DataTypes.BIGINT,
                 references: { model: 'profiles', key: 'id' }
             },
             animal_id: {
-                type: DataTypes.STRING,
+                type: DataTypes.BIGINT,
                 references: { model: 'animals', key: 'id' }
             },
             description: {

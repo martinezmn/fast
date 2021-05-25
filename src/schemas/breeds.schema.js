@@ -12,7 +12,7 @@ module.exports = class BreedsSchema {
                             items: {
                                 type: 'object',
                                 properties: {
-                                    id: { type: 'string' },
+                                    id: { type: 'integer' },
                                     specie: { type: 'string' },
                                     breed: { type: 'string' }
                                 }

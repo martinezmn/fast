@@ -12,7 +12,7 @@ module.exports = class PostsSchema {
                             items: {
                                 type: 'object',
                                 properties: {
-                                    id: { type: 'string' },
+                                    id: { type: 'integer' },
                                     description: { type: 'string' },
                                     content: { type: 'array' },
                                     likes_count: { type: 'integer' },
@@ -21,7 +21,7 @@ module.exports = class PostsSchema {
                                     profile: {
                                         type: 'object',
                                         properties: {
-                                            id: { type: 'string' },
+                                            id: { type: 'integer' },
                                             name: { type: 'string' },
                                             profile_picture: { type: ['string', 'null'] }
                                         }
@@ -29,7 +29,7 @@ module.exports = class PostsSchema {
                                     animal: {
                                         type: ['object', 'null'],
                                         properties: {
-                                            id: { type: 'string' },
+                                            id: { type: 'integer' },
                                             name: { type: 'string' },
                                             profile_picture: { type: 'string' }
                                         }
