@@ -36,12 +36,11 @@ module.exports = class UsersController {
                 throw new Error('Invalid code.');
             }
 
-            await Token.destroy({ where: { email } });
-
             const profile = await Profile.create({ name, full_name });
             const user = await User.create({ profile_id: profile.id, email, password });
 
             const jwtToken = User.generateJwt(user);
+            await Token.destroy({ where: { email } });
 
             return reply.code(200).send({ profile, token: jwtToken });
         } catch (error) {
