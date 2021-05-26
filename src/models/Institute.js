@@ -4,7 +4,7 @@ class institute extends Model {
     static init(sequelize) {
         super.init({
             profile_id: {
-                type: DataTypes.STRING,
+                type: DataTypes.BIGINT,
                 primaryKey: true
             },
             email: {

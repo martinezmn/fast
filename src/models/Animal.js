@@ -1,5 +1,4 @@
 const { Model, DataTypes } = require('sequelize');
-const uniqidHelper = require('../helpers/uniqid.helper');
 
 class animal extends Model {
     static init(sequelize) {
@@ -33,11 +32,6 @@ class animal extends Model {
                 type: DataTypes.INTEGER
             },
         }, {
-            hooks: {
-                beforeCreate: (animal, options) => {
-                    animal.id = uniqidHelper.generate();
-                }
-            },
             updatedAt: 'updated_at',
             createdAt: 'created_at',
             sequelize

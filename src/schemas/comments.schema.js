@@ -72,7 +72,7 @@ module.exports = class CommentsSchema {
             params: {
                 type: 'object',
                 properties: {
-                    comment_id: { type: 'integer' }
+                    comment_id: { type: 'string' }
                 },
                 required: ['comment_id']
             },

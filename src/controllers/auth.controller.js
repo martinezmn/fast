@@ -41,7 +41,6 @@ module.exports = class AuthController {
 
             return reply.code(200).send({ accounts });
         } catch (error) {
-            console.log(error);
             return reply.code(500).send({ message: error.message });
         }
     }
@@ -50,11 +49,11 @@ module.exports = class AuthController {
         try {
             const { profile_id } = request.body;
 
-            if (profile_id === request.user.profile_id) {
+            if (profile_id == request.user.profile_id) {
                 throw new Error('Nothing to change.');
             }
 
-            if (profile_id !== request.user.user_id) {
+            if (profile_id != request.user.user_id) {
                 const admin = await InstitutesAdmin.findOne({
                     where: {
                         profile_id: request.user.user_id,

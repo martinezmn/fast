@@ -1,5 +1,4 @@
 const { Model, DataTypes } = require('sequelize');
-const uniqidHelper = require('../helpers/uniqid.helper');
 
 class profile extends Model {
     static init(sequelize) {
@@ -27,11 +26,6 @@ class profile extends Model {
                 }
             },
         }, {
-            hooks: {
-                beforeCreate: (profile, options) => {
-                    profile.id = uniqidHelper.generate();
-                }
-            },
             updatedAt: 'updated_at',
             createdAt: 'created_at',
             sequelize

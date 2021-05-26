@@ -6,7 +6,7 @@ module.exports = {
       id: {
         type: Sequelize.BIGINT,
         primaryKey: true,
-        allowNull: false
+        autoIncrement: true
       },
       institute_id: {
         type: Sequelize.BIGINT,

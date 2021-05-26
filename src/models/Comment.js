@@ -1,5 +1,4 @@
 const { Model, DataTypes } = require('sequelize');
-const uniqidHelper = require('../helpers/uniqid.helper');
 
 class comment extends Model {
     static init(sequelize) {
@@ -16,11 +15,6 @@ class comment extends Model {
                 type: DataTypes.STRING
             }
         }, {
-            hooks: {
-                beforeCreate: (comment, options) => {
-                    comment.id = uniqidHelper.generate();
-                }
-            },
             updatedAt: false,
             createdAt: 'created_at',
             sequelize
