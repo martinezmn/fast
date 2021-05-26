@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 class user extends Model {
     static init(sequelize) {
@@ -30,6 +31,10 @@ class user extends Model {
             createdAt: 'created_at',
             sequelize
         });
+    }
+
+    static generateJwt(user) {
+        return jwt.sign({ user: user.profile_id, profile: user.profile_id }, process.env.API_SALT);
     }
 }
 
