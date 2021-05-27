@@ -33,7 +33,7 @@ module.exports = class UsersController {
             const token = await Token.findByPk(email);
 
             if (!token || !await Token.verify(email_code, token.hash)) {
-                throw new Error('Invalid code.');
+                return reply.code(400).send('Código inválido');
             }
 
             const profile = await Profile.create({ name, full_name });

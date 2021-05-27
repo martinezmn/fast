@@ -11,7 +11,7 @@ module.exports = class AuthController {
             const user = await User.findOne({ where: { email: email } });
 
             if (user === null || !await bcrypt.compare(password, user.password)) {
-                throw new Error('Invalid email or password.');
+                return reply.code(400).send('Email ou senha inválidos');
             }
 
             const profile = await Profile.findByPk(user.profile_id);
