@@ -1,0 +1,39 @@
+version: '3.3'
+
+services:
+  api:
+    image: node:14
+    container_name: api
+    working_dir: /app
+    ports:
+      - '9000:9000'
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    command: bash -c "npm install && yarn && yarn sequelize db:create || true && yarn sequelize db:migrate && npm start"
+
+  db:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db:/var/lib/postgresql/data
+    container_name: db
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+      - PGADMIN_LISTEN_PORT=9001
+    ports:
+      - "9001:9001"
+
+    
+volumes:
+  postgresql:
+  postgresql_data: 
+  db:
