@@ -33,7 +33,7 @@ module.exports = class UsersController {
             const token = await Token.findByPk(email);
 
             if (!token || !await Token.verify(email_code, token.hash)) {
-                return reply.code(400).send('Código inválido');
+                return reply.code(400).send({ message: 'Código inválido' });
             }
 
             const profile = await Profile.create({ name, full_name });
@@ -44,6 +44,7 @@ module.exports = class UsersController {
 
             return reply.code(200).send({ profile, token: jwtToken });
         } catch (error) {
+            console.log(error)
             return reply.code(500).send({ message: error.message });
         }
     }
