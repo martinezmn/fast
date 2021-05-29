@@ -11,7 +11,7 @@ services:
       - .:/app
     depends_on:
       - db
-    command: bash -c "npm install && yarn && yarn sequelize db:create || true && yarn sequelize db:migrate && npm start"
+    command: bash -c "npm install && yarn && yarn sequelize db:create || true && yarn sequelize db:migrate && yarn sequelize db:seed:all || true && npm start"
 
   db:
     image: postgres:12
