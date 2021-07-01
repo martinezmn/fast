@@ -13,10 +13,6 @@ module.exports = {
         allowNull: false,
         references: { model: 'profiles', key: 'id' }
       },
-      animal_id: {
-        type: Sequelize.BIGINT,
-        allowNull: true
-      },
       description: {
         type: Sequelize.STRING,
         allowNull: true
@@ -24,6 +20,11 @@ module.exports = {
       content: {
         type: Sequelize.JSON,
         allowNull: false
+      },
+      has_animals: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
       },
       likes_count: {
         type: Sequelize.INTEGER,

@@ -7,10 +7,6 @@ class post extends Model {
                 type: DataTypes.BIGINT,
                 references: { model: 'profiles', key: 'id' }
             },
-            animal_id: {
-                type: DataTypes.BIGINT,
-                references: { model: 'animals', key: 'id' }
-            },
             description: {
                 type: DataTypes.STRING,
                 validate: {
@@ -19,6 +15,9 @@ class post extends Model {
             },
             content: {
                 type: DataTypes.JSON
+            },
+            has_animals: {
+                type: DataTypes.BOOLEAN,
             },
             likes_count: {
                 type: DataTypes.INTEGER

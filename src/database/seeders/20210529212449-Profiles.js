@@ -30,8 +30,8 @@ module.exports = {
     
     await queryInterface.bulkInsert('institutes', [
       {
-        profile_id: 1,
-        email: 'admin@admin.com',
+        profile_id: 2,
+        email: 'caoterapeuta@instituto.com',
         description: 'Um instituto legal',
         city: 'Campo Grande',
         state: 'MS',

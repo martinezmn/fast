@@ -15,6 +15,7 @@ module.exports = class PostsSchema {
                                     id: { type: 'integer' },
                                     description: { type: 'string' },
                                     content: { type: 'array' },
+                                    has_animals: { type: 'boolean' },
                                     likes_count: { type: 'integer' },
                                     comments_count: { type: 'integer' },
                                     created_at: { type: 'string' },
@@ -24,14 +25,6 @@ module.exports = class PostsSchema {
                                             id: { type: 'integer' },
                                             name: { type: 'string' },
                                             profile_picture: { type: ['string', 'null'] }
-                                        }
-                                    },
-                                    animal: {
-                                        type: ['object', 'null'],
-                                        properties: {
-                                            id: { type: 'integer' },
-                                            name: { type: 'string' },
-                                            profile_picture: { type: 'string' }
                                         }
                                     },
                                     like: {
