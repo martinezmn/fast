@@ -10,7 +10,7 @@ COPY . ./
 RUN npm install
 
 # Run migrations
-RUN yarn && yarn sequelize db:migrate
+# RUN yarn && yarn sequelize db:migrate
 
 EXPOSE 80
 CMD [ "npm", "start" ]
