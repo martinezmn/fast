@@ -56,13 +56,12 @@
     "placementConstraints": [],
     "memory": "512",
     "taskRoleArn": "arn:aws:iam::204848122314:role/ecsTaskExecutionRole",
-    "compatibilities": [
-        "EC2",
-        "FARGATE"
-    ],
     "family": "kapi-application",
     "pidMode": null,
     "networkMode": "awsvpc",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
     "cpu": "256",
     "inferenceAccelerators": null,
     "proxyConfiguration": null,
