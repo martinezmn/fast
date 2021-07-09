@@ -4,7 +4,7 @@
     "executionRoleArn": "",
     "networkMode": "bridge",
     "containerDefinitions": [{
-        "name": "",
+        "name": "kapi-application",
         "image": "",
         "repositoryCredentials": {
             "credentialsParameter": ""
@@ -77,7 +77,7 @@
             "valueFrom": ""
         }],
         "dependsOn": [{
-            "containerName": "",
+            "containerName": "kapi-application",
             "condition": "COMPLETE"
         }],
         "startTimeout": 0,
