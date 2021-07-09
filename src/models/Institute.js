@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
+const Profile = require('./Profile');
 
 class institute extends Model {
     static init(sequelize) {
@@ -29,6 +30,14 @@ class institute extends Model {
             updatedAt: 'updated_at',
             createdAt: 'created_at',
             sequelize
+        });
+    }
+
+    static async findById(primaryKey) {
+        this.belongsTo(Profile, { foreignKey: 'profile_id' })
+
+        return await this.findByPk(primaryKey, {
+            include: [Profile]
         });
     }
 }

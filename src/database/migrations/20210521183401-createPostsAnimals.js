@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.createTable('posts_animals', {
+    return queryInterface.createTable('post_animals', {
       post_id: {
         type: Sequelize.BIGINT,
         primaryKey: true,
@@ -18,6 +18,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('posts_animals');
+    return queryInterface.dropTable('post_animals');
   }
 };

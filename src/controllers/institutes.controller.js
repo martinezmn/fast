@@ -1,5 +1,4 @@
 const Institute = require('../models/Institute');
-const Profile = require('../models/Profile');
 const Animal = require('../models/Animal');
 const Breed = require('../models/Breed');
 const Like = require('../models/Like');
@@ -10,11 +9,7 @@ module.exports = class InstitutesController {
         try {
             const { institute_id } = request.params;
 
-            Institute.belongsTo(Profile, { foreignKey: 'profile_id' })
-
-            const institute = await Institute.findByPk(institute_id, {
-                include: [Profile]
-            });
+            const institute = await Institute.findById(institute_id);
 
             return reply.code(200).send({ institute });
         } catch (error) {

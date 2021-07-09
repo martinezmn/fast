@@ -24,9 +24,10 @@ async function routes(fastify, options) {
     fastify.get('/breeds/list', { schema: await BreedsSchema.list(), preValidation: [fastify.auth] }, BreedsController.list);
 
     fastify.get('/posts/timeline', { schema: await PostsSchema.timeline(), preValidation: [fastify.auth] }, PostsController.timeline);
+    fastify.get('/posts/animals/:post_id', { schema: await PostsSchema.animals(), preValidation: [fastify.auth] }, PostsController.animals);
 
-    fastify.post('/likes/:post_id/like', { schema: await LikesSchema.like(), preValidation: [fastify.auth] }, LikesController.like);
-    fastify.post('/likes/:post_id/dislike', { schema: await LikesSchema.like(), preValidation: [fastify.auth] }, LikesController.dislike);
+    fastify.post('/likes/like/:post_id', { schema: await LikesSchema.like(), preValidation: [fastify.auth] }, LikesController.like);
+    fastify.post('/likes/dislike/:post_id', { schema: await LikesSchema.like(), preValidation: [fastify.auth] }, LikesController.dislike);
 
     fastify.get('/comments/list/:post_id', { schema: await CommentsSchema.list(), preValidation: [fastify.auth] }, CommentsController.list);
     fastify.get('/comments/list/:post_id/:last_comment_id', { schema: await CommentsSchema.list(), preValidation: [fastify.auth] }, CommentsController.list);

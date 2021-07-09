@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const Profile = require('../models/Profile');
-const InstitutesAdmin = require('../models/InstitutesAdmin');
+const InstituteAdmin = require('../models/InstituteAdmin');
 
 module.exports = class AuthController {
     static async authenticate(request, reply) {
@@ -26,9 +26,9 @@ module.exports = class AuthController {
 
     static async listAccounts(request, reply) {
         try {
-            InstitutesAdmin.belongsTo(Profile, { foreignKey: 'institute_id' })
+            InstituteAdmin.belongsTo(Profile, { foreignKey: 'institute_id' })
 
-            const accounts = await InstitutesAdmin.findAll({
+            const accounts = await InstituteAdmin.findAll({
                 include: [Profile],
                 where: {
                     profile_id: request.user.user_id
@@ -54,7 +54,7 @@ module.exports = class AuthController {
             }
 
             if (profile_id != request.user.user_id) {
-                const admin = await InstitutesAdmin.findOne({
+                const admin = await InstituteAdmin.findOne({
                     where: {
                         profile_id: request.user.user_id,
                         institute_id: profile_id

@@ -1,24 +1,24 @@
 const { Model, DataTypes } = require('sequelize');
 
-class postsAnimals extends Model {
+class instituteAdmin extends Model {
     static init(sequelize) {
         super.init({
-            post_id: {
+            profile_id: {
                 type: DataTypes.BIGINT,
                 primaryKey: true,
-                references: { model: 'posts', key: 'id' }
+                references: { model: 'profiles', key: 'id' }
             },
-            animal_id: {
+            institute_id: {
                 type: DataTypes.BIGINT,
                 primaryKey: true,
-                references: { model: 'animals', key: 'id' }
+                references: { model: 'profiles', key: 'id' }
             }
         }, {
             updatedAt: false,
-            createdAt: false,
+            createdAt: 'created_at',
             sequelize
         });
     }
 }
 
-module.exports = postsAnimals;
+module.exports = instituteAdmin;

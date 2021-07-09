@@ -1,4 +1,6 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, Sequelize } = require('sequelize');
+const PostAnimal = require('./PostAnimal');
+const Breed = require('./Breed');
 
 class animal extends Model {
     static init(sequelize) {
@@ -35,6 +37,24 @@ class animal extends Model {
             updatedAt: 'updated_at',
             createdAt: 'created_at',
             sequelize
+        });
+    }
+
+    static async findAllByPostId(post_id) {
+        PostAnimal.belongsTo(this);
+        this.belongsTo(Breed);
+
+        return await PostAnimal.findAll({
+            include: [{ model: this, include: [{ model: Breed, attributes: [] }], attributes: [] }],
+            attributes: [
+                [Sequelize.col('animal.id'), 'id'],
+                [Sequelize.col('animal.name'), 'name'],
+                [Sequelize.col('animal.profile_picture'), 'profile_picture'],
+                [Sequelize.col('animal.breed.specie'), 'specie'],
+                [Sequelize.col('animal.breed.breed'), 'breed']
+            ],
+            raw: true,
+            where: { post_id }
         });
     }
 }

@@ -41,4 +41,37 @@ module.exports = class PostsSchema {
             }
         }
     }
+    static async animals() {
+        return {
+            tags: ['Post'],
+            summary: 'protected',
+            params: {
+                type: 'object',
+                properties: {
+                    post_id: { type: 'integer' }
+                },
+                required: ['post_id']
+            },
+            response: {
+                200: {
+                    type: 'object',
+                    properties: {
+                        animals: {
+                            type: 'array',
+                            items: {
+                                type: 'object',
+                                properties: {
+                                    id: { type: 'integer' },
+                                    name: { type: 'string' },
+                                    profile_picture: { type: 'string' },
+                                    specie: { type: 'string' },
+                                    breed: { type: 'string' }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
