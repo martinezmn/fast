@@ -19,7 +19,7 @@
             "protocol": "tcp",
             "containerPort": 80
         }],
-        "command": "yarn && yarn sequelize db:migrate",
+        "command": ["yarn && yarn sequelize db:migrate"],
         "linuxParameters": null,
         "cpu": 0,
         "environment": [],

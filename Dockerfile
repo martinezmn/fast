@@ -9,6 +9,8 @@ COPY . ./
 # Install app dependencies
 RUN npm install
 
+RUN yarn --version
+
 # Run migrations
 # RUN yarn && yarn sequelize db:migrate
 
