@@ -29,10 +29,20 @@ fastify.register(require('./routes'));
 
 const port = process.env.API_PORT || 3000;
 
-fastify.listen(port, '0.0.0.0', function (err, address) {
+console.log('Loading migrations...');
+require('child_process').exec('npx sequelize-cli db:migrate', (err, stdout, stderr) => {
     if (err) {
-        console.log(err);
-        process.exit(1);
+        console.error(err)
+    } else {
+        console.log(stdout.trim());
     }
-    console.log(`server listening on ${address}`);
+    
+    console.log('\nStarting application...');
+    fastify.listen(port, '0.0.0.0', function (err, address) {
+        if (err) {
+            console.log(err);
+            process.exit(1);
+        }
+        console.log(`\nServer listening on ${address}`);
+    });
 });
