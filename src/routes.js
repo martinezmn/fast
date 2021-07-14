@@ -14,6 +14,10 @@ const InstitutesController = require("./controllers/institutes.controller");
 const InstitutesSchema = require("./schemas/institutes.schema");
 
 async function routes(fastify, options) {
+    fastify.get('/api', (request, reply) => {
+        reply.send({ node: process.versions.node, });
+    });
+    
     fastify.post('/auth/authenticate', { schema: await AuthSchema.authenticate() }, AuthController.authenticate);
     fastify.get('/auth/list-accounts', { schema: await AuthSchema.listAccounts(), preValidation: [fastify.auth] }, AuthController.listAccounts);
     fastify.post('/auth/change-account', { schema: await AuthSchema.changeAccount(), preValidation: [fastify.auth] }, AuthController.changeAccount);
