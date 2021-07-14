@@ -13,7 +13,7 @@ fastify.register(require('fastify-swagger'), {
     routePrefix: '/doc',
     swagger: {
         info: {
-            title: 'Test swagger'
+            title: 'Test swagger and deploy'
         }
     },
     exposeRoute: true
