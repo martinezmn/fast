@@ -5,14 +5,10 @@ on:
     types: [ created ]
 
 env:
-  AWS_REGION: us-east-2                         # set this to your preferred AWS region, e.g. us-west-1
+  ECR_REGISTRY: registry.cbdmar.online              # set this to the name of the container in the
   ECR_REPOSITORY: kapi-application              # set this to your Amazon ECR repository name
-  ECS_SERVICE: kapi-application                 # set this to your Amazon ECS service name
-  ECS_CLUSTER: kapi-application                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: ./kapi-application.json  # set this to the path to your Amazon ECS task definition
-                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: kapi-application              # set this to the name of the container in the
-                                                # containerDefinitions section of your task definition
+  IMAGE_TAG: ${{ github.run_number }}
 
 defaults:
   run:
@@ -32,15 +28,11 @@ jobs:
 
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
-        env:
-          ECR_REGISTRY: http://vps23248.publiccloud.com.br:49462
-          IMAGE_TAG: ${{ github.run_number }}
-          # IMAGE_TAG: ${{ github.sha }}
         run: |
           # Build a docker container and
           # push it to ECR so that it can
           # be deployed to ECS.
-          echo API_PORT=80$'\n'API_SALT=6ern32t9q785wynt461nja3iy5kbl98zxuk7is6e4zgpjvh0jxtx14n3n5v7efoa$'\n'API_PROD=false$'\n'$'\n'DB_HOST=kapi-pg-application.c5flffkgxh2m.us-east-2.rds.amazonaws.com$'\n'DB_USER=postgres$'\n'DB_PASS=Gw2xV9RYGdpsaYfK$'\n'DB_NAME=kapi$'\n'$'\n'SMTP_HOST=smtp-relay.sendinblue.com$'\n'SMTP_USER=bism4d@gmail.com$'\n'SMTP_PASS=O867F3BApZYJjqV5$'\n'SMTP_PORT=587$'\n'SMTP_SECURE=false$'\n' > .env
+          echo API_PORT=80$'\n'API_SALT=6ern32t9q785wynt461nja3iy5kbl98zxuk7is6e4zgpjvh0jxtx14n3n5v7efoa$'\n'API_PROD=false$'\n'$'\n'DB_HOST=pg.cbdmar.online$'\n'DB_USER=postgres$'\n'DB_PASS=postgres$'\n'DB_NAME=kapi$'\n'$'\n'SMTP_HOST=smtp-relay.sendinblue.com$'\n'SMTP_USER=bism4d@gmail.com$'\n'SMTP_PASS=O867F3BApZYJjqV5$'\n'SMTP_PORT=587$'\n'SMTP_SECURE=false$'\n' > .env
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
