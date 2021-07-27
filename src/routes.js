@@ -14,7 +14,7 @@ const InstitutesController = require("./controllers/institutes.controller");
 const InstitutesSchema = require("./schemas/institutes.schema");
 
 async function routes(fastify, options) {
-    fastify.get('/api', (request, reply) => {
+    fastify.get('/apii', (request, reply) => {
         reply.send({ node: process.versions.node, });
     });
     
