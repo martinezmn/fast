@@ -10,7 +10,7 @@ on:
 env:
   ECR_REGISTRY: registry.cbdmar.online          # set this to the name of the container in the
   ECR_REPOSITORY: kapi-application              # set this to your Amazon ECR repository name
-  CONTAINER_NAME: kapi-application              # set this to the name of the container in the
+  CONTAINER_NAME: kapi-application              # set this to the name of the container in the.
   IMAGE_TAG: latest                            # ${{ github.run_number }}
 
 defaults:
