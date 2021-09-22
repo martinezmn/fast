@@ -6,46 +6,7 @@ services:
     container_name: api
     working_dir: /app
     ports:
-      - '9000:9000'
+      - '80:80'
     volumes:
       - .:/app
-    depends_on:
-      - db
     command: bash -c "npm install && yarn && yarn sequelize db:create || true && yarn sequelize db:migrate && yarn sequelize db:seed:all || true && npm start"
-
-  db:
-    image: postgres:12
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    volumes:
-      - db:/var/lib/postgresql/data
-    container_name: db
-
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
-      - PGADMIN_DEFAULT_PASSWORD=admin
-      - PGADMIN_LISTEN_PORT=9001
-    ports:
-      - "9001:9001"
-
-  portainer:
-    image: portainer/portainer
-    container_name: portainer
-    command: -H unix:///var/run/docker.sock
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer:/data
-    entrypoint: /portainer -p :9004
-    ports:
-      - "9004:9004"
-    restart: unless-stopped
-    
-volumes:
-  postgresql:
-  postgresql_data: 
-  db:
-  portainer:
