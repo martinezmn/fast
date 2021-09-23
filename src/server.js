@@ -27,7 +27,7 @@ fastify.decorate("auth", async (request) => await request.jwtVerify());
 
 fastify.register(require('./routes'));
 
-const port = process.env.API_PORT || 3000;
+const port = process.env.API_PORT || 80;
 
 fastify.listen(port, '0.0.0.0', function (err, address) {
     if (err) {
