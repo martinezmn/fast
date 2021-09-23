@@ -8,10 +8,9 @@ on:
     types: [ created ]
 
 env:
-  ECR_REGISTRY: registry.kapiwa.com.br          # set this to the name of the container in the
-  ECR_REPOSITORY: kapi-application              # set this to your Amazon ECR repository name
-  CONTAINER_NAME: kapi-application              # set this to the name of the container in the.
-  IMAGE_TAG: latest                             # ${{ github.run_number }}
+  REGISTRY_HOST: registry.kapiwa.com.br
+  CONTAINER_NAME: kapi-application
+  IMAGE_TAG: latest
 
 defaults:
   run:
@@ -32,10 +31,8 @@ jobs:
       - name: Build and push image to VPS Registry
         id: build-image
         run: |
-          # Build a docker container and
-          # push it to ECR so that it can
-          # be deployed to ECS.
+          # Build a docker container
           echo API_PORT=80$'\n'API_SALT=6ern32t9q785wynt461nja3iy5kbl98zxuk7is6e4zgpjvh0jxtx14n3n5v7efoa$'\n'API_PROD=false$'\n'$'\n'DB_HOST=pg.kapiwa.com.br$'\n'DB_USER=postgres$'\n'DB_PASS=postgres$'\n'DB_NAME=kapi$'\n'$'\n'SMTP_HOST=smtp-relay.sendinblue.com$'\n'SMTP_USER=bism4d@gmail.com$'\n'SMTP_PASS=O867F3BApZYJjqV5$'\n'SMTP_PORT=587$'\n'SMTP_SECURE=false$'\n' > .env
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          docker build -t $REGISTRY_HOST/$CONTAINER_NAME:$IMAGE_TAG .
+          docker push $REGISTRY_HOST/$CONTAINER_NAME:$IMAGE_TAG
+          echo "::set-output name=image::$REGISTRY_HOST/$CONTAINER_NAME:$IMAGE_TAG"
